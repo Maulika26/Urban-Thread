@@ -1,0 +1,127 @@
+.checkout-page {
+  padding-top: calc(var(--navbar-height) + var(--space-2xl));
+  min-height: 100vh;
+}
+
+.checkout-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: var(--space-2xl);
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.checkout-section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xl);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.form-row-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Summary */
+.checkout-summary {
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-lg));
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+}
+
+.checkout-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: var(--space-md);
+}
+
+.checkout-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.checkout-item-img {
+  width: 50px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.checkout-item-info {
+  flex: 1;
+}
+
+.checkout-item-name {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.checkout-item-qty {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.checkout-item-price {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin-top: var(--space-md);
+}
+
+/* Order Success */
+.order-success {
+  text-align: center;
+  padding: var(--space-4xl);
+}
+
+.order-success h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: var(--space-xl) 0 var(--space-md);
+}
+
+.order-success p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2xl);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row, .form-row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-title {
+    font-size: 1.5rem;
+  }
+}

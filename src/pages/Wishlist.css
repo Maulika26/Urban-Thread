@@ -1,0 +1,104 @@
+.wishlist-page {
+  padding-top: calc(var(--navbar-height) + var(--space-2xl));
+  min-height: 100vh;
+}
+
+.wishlist-title {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.wishlist-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: var(--space-2xl);
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-lg);
+}
+
+.wishlist-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.wishlist-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.wishlist-card-image {
+  display: block;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.wishlist-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.wishlist-card:hover .wishlist-card-image img {
+  transform: scale(1.05);
+}
+
+.wishlist-card-info {
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+}
+
+.wishlist-card-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  transition: color var(--transition-fast);
+}
+
+.wishlist-card-name:hover {
+  color: var(--accent);
+}
+
+.wishlist-card-category {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wishlist-card-price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.wishlist-card-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.wishlist-remove {
+  color: var(--text-tertiary);
+}
+
+.wishlist-remove:hover {
+  color: var(--error) !important;
+  background: rgba(255, 82, 82, 0.1) !important;
+}
+
+@media (max-width: 480px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}

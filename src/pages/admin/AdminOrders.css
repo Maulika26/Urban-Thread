@@ -1,0 +1,718 @@
+/* ===== ADMIN ORDERS ===== */
+
+/* Filter Tabs */
+.order-filter-tabs {
+  display: flex;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.order-filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.order-filter-tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.order-filter-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-tab-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.filter-tab-active:hover {
+  color: #fff;
+}
+
+.filter-tab-count {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.filter-tab-active .filter-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Orders List */
+.admin-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-bottom: var(--space-3xl);
+}
+
+/* Order Card */
+.admin-order-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.admin-order-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-order-expanded {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-light), var(--shadow-lg);
+}
+
+/* Card Header */
+.admin-order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-xl);
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition-fast);
+}
+
+.admin-order-header:hover {
+  background: var(--bg-elevated);
+}
+
+.admin-order-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.admin-order-id-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-order-id {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.admin-order-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.admin-order-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.admin-order-customer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.admin-order-amount {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.admin-order-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Status Badge — reuse from Orders.css */
+.order-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.status-confirmed {
+  background: rgba(0, 230, 118, 0.12);
+  color: var(--success);
+}
+
+.status-processing {
+  background: rgba(64, 196, 255, 0.12);
+  color: var(--info);
+}
+
+.status-shipped {
+  background: rgba(41, 121, 255, 0.12);
+  color: var(--accent);
+}
+
+.status-delivered {
+  background: rgba(0, 230, 118, 0.18);
+  color: var(--success);
+}
+
+.order-expand-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.order-expand-btn:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+/* Card Body */
+.admin-order-body {
+  padding: 0 var(--space-xl) var(--space-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+/* ===== STATUS UPDATE SECTION ===== */
+.status-update-section {
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.status-update-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-lg);
+}
+
+.status-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.status-step-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-md);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.status-step-btn:hover:not(:disabled) {
+  border-color: var(--step-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--step-color) 25%, transparent);
+}
+
+.status-step-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.status-step-active {
+  border-color: var(--step-color);
+  background: color-mix(in srgb, var(--step-color) 10%, var(--bg-card));
+  box-shadow: 0 0 20px color-mix(in srgb, var(--step-color) 20%, transparent);
+}
+
+.status-step-past .status-step-icon {
+  background: color-mix(in srgb, var(--step-color) 15%, transparent);
+  color: var(--step-color);
+}
+
+.status-step-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  color: var(--text-tertiary);
+  transition: all var(--transition-base);
+}
+
+.status-step-active .status-step-icon {
+  background: var(--step-color);
+  color: #fff;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--step-color) 40%, transparent);
+}
+
+.status-step-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.status-step-active .status-step-label {
+  color: var(--step-color);
+}
+
+.status-step-current {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--step-color);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-updating-msg {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--accent);
+  margin-top: var(--space-md);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+/* ===== ORDER ITEMS (admin) ===== */
+.admin-order-items {
+  margin-top: var(--space-xl);
+}
+
+.admin-order-items h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-md);
+}
+
+.admin-items-list {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.admin-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-item-row:last-child {
+  border-bottom: none;
+}
+
+.admin-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-item-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.admin-item-qty {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  background: var(--bg-elevated);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+.admin-item-size-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.admin-item-price {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ===== RETURN SECTION ===== */
+.admin-return-section {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg-secondary));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border-color));
+  border-radius: var(--radius-lg);
+}
+
+.admin-return-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.admin-return-header h4 {
+  margin-bottom: 0 !important;
+  color: var(--accent) !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-return-body {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.admin-return-body p {
+  margin-bottom: 4px;
+}
+
+.admin-return-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.return-status-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.return-status-badge.status-pending {
+  background: rgba(255, 171, 0, 0.15);
+  color: #FFAB00;
+}
+
+.return-status-badge.status-approved {
+  background: rgba(0, 230, 118, 0.15);
+  color: var(--success);
+}
+
+.return-status-badge.status-rejected {
+  background: rgba(255, 82, 82, 0.15);
+  color: var(--error);
+}
+
+.status-update-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  margin-top: -0.75rem;
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+}
+
+.status-step-time {
+  font-size: 0.6rem;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.status-step-active .status-step-time {
+  color: var(--step-color);
+}
+
+.admin-return-processed {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+
+/* ===== ADMIN REFUND SECTION ===== */
+.admin-refund-section {
+  margin-top: var(--space-lg);
+}
+
+.admin-refund-panel {
+  background: var(--bg-card);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border-color));
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.admin-refund-panel-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-secondary));
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 15%, var(--border-color));
+  color: var(--accent);
+}
+
+.admin-refund-panel-header h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.admin-refund-panel-body {
+  padding: var(--space-lg);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-lg);
+}
+
+.admin-refund-input-group {
+  flex: 1;
+}
+
+.admin-refund-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-refund-currency-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.admin-refund-input {
+  padding-left: 36px !important;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.admin-refund-max {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+
+.admin-refund-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Refund Done State */
+.admin-refund-done {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: color-mix(in srgb, var(--success) 8%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--success) 20%, var(--border-color));
+  border-radius: var(--radius-md);
+}
+
+.admin-refund-done-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--success);
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(0, 230, 118, 0.3);
+}
+
+.admin-refund-done-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-refund-done-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--success);
+}
+
+.admin-refund-done-amount {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.admin-refund-done-date {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ===== DETAILS GRID ===== */
+.admin-order-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.admin-detail-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.admin-detail-card h4 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-md);
+}
+
+.admin-detail-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.admin-detail-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.admin-detail-row svg {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.admin-address-text {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.detail-label {
+  color: var(--text-tertiary);
+  font-size: 0.78rem;
+}
+
+.detail-value-mono {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
+.detail-value-bold {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .status-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-order-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-order-header {
+    padding: var(--space-md);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .admin-order-center {
+    display: none;
+  }
+
+  .admin-order-body {
+    padding: 0 var(--space-md) var(--space-md);
+  }
+
+  .order-filter-tabs {
+    gap: var(--space-xs);
+  }
+
+  .order-filter-tab {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .status-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .status-step-btn {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .status-step-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .admin-order-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-order-right {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border-color);
+  }
+}

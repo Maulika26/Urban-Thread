@@ -1,0 +1,119 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(41, 121, 255, 0.06) 0%, transparent 50%),
+    var(--bg-primary);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl) var(--space-2xl);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xl);
+}
+
+.auth-header h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.auth-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.auth-form {
+  margin-bottom: var(--space-xl);
+}
+
+.auth-error {
+  padding: var(--space-md);
+  background: rgba(255, 82, 82, 0.1);
+  border: 1px solid rgba(255, 82, 82, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--error);
+  font-size: 0.85rem;
+  margin-bottom: var(--space-lg);
+}
+
+.input-icon-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.input-with-icon {
+  padding-left: 44px !important;
+}
+
+.input-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.input-toggle:hover {
+  color: var(--text-primary);
+}
+
+.auth-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-color);
+}
+
+.auth-link {
+  color: var(--accent);
+  font-weight: 600;
+  transition: opacity var(--transition-fast);
+}
+
+.auth-link:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
