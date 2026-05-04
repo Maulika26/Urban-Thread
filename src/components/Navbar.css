@@ -328,7 +328,9 @@
   }
 
   .nav-login-btn {
-    display: none;
+    display: flex;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
   }
 
   .search-dropdown {
@@ -342,7 +344,7 @@
   }
 
   .user-menu-wrapper {
-    display: none;
+    display: block;
   }
 }
 

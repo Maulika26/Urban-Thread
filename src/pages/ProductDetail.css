@@ -216,22 +216,42 @@
 /* Actions */
 .product-detail-actions {
   display: flex;
+  flex-direction: column;
   gap: var(--space-md);
   margin-bottom: var(--space-2xl);
 }
 
-.flex-1 {
-  flex: 1;
+@media (min-width: 640px) {
+  .product-detail-actions {
+    flex-direction: row;
+  }
+  
+  .action-btn-main {
+    flex: 2;
+  }
+  
+  .action-btn-secondary {
+    flex: 1;
+  }
+}
+
+.action-btn-main, .action-btn-secondary {
+  width: 100%;
+}
+
+.wishlisted-active {
+  color: var(--error) !important;
+  border-color: var(--error) !important;
+  background: rgba(255, 82, 82, 0.08) !important;
+}
+
+.wishlisted-active svg {
+  filter: drop-shadow(0 0 5px rgba(255, 82, 82, 0.4));
 }
 
 .btn-success {
   background: var(--success) !important;
   box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3) !important;
-}
-
-.wishlisted-btn {
-  color: var(--error);
-  border-color: var(--error);
 }
 
 /* Perks */

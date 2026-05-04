@@ -212,18 +212,19 @@ export default function ProductDetail() {
 
                 <div className="product-detail-actions">
                   <button
-                    className={`btn btn-primary btn-lg flex-1 ${addedToCart ? 'btn-success' : ''}`}
+                    className={`btn btn-primary btn-lg action-btn-main ${addedToCart ? 'btn-success' : ''}`}
                     onClick={handleAddToCart}
                   >
-                    <ShoppingCart size={18} />
-                    {addedToCart ? 'Added to Cart! ✓' : 'Add to Cart'}
+                    <ShoppingCart size={20} />
+                    {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
                   </button>
                   <button
-                    className={`btn btn-secondary btn-icon btn-lg ${wishlisted ? 'wishlisted-btn' : ''}`}
+                    className={`btn btn-secondary btn-lg action-btn-secondary ${wishlisted ? 'wishlisted-active' : ''}`}
                     onClick={handleWishlist}
                     aria-label="Wishlist"
                   >
-                    <Heart size={20} fill={wishlisted ? 'currentColor' : 'none'} />
+                    <Heart size={20} fill={wishlisted ? 'var(--error)' : 'none'} color={wishlisted ? 'var(--error)' : 'currentColor'} />
+                    <span>{wishlisted ? 'Wishlisted' : 'Add to Wishlist'}</span>
                   </button>
                 </div>
               </>

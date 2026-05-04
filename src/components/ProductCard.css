@@ -102,6 +102,15 @@
   color: #fff;
 }
 
+.product-action-btn.wishlisted-active {
+  color: var(--error);
+}
+
+.product-action-btn.wishlisted-active:hover {
+  background: var(--error);
+  color: #fff;
+}
+
 .product-mood-badge {
   position: absolute;
   top: 12px;

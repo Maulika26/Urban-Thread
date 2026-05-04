@@ -36,6 +36,13 @@ export default function ProductCard({ product }) {
           <button className="product-action-btn" onClick={handleAddToCart} aria-label="Add to cart">
             <ShoppingCart size={18} />
           </button>
+          <button 
+            className={`product-action-btn ${wishlisted ? 'wishlisted-active' : ''}`} 
+            onClick={handleWishlist} 
+            aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+          >
+            <Heart size={18} fill={wishlisted ? 'var(--error)' : 'none'} color={wishlisted ? 'var(--error)' : 'currentColor'} />
+          </button>
           <Link to={`/product/${product.id}`} className="product-action-btn" aria-label="View product">
             <Eye size={18} />
           </Link>
