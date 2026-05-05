@@ -112,6 +112,18 @@
   font-size: 1.05rem;
 }
 
+.order-success-savings {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--success) !important;
+  font-weight: 600;
+  padding: 8px 16px;
+  background: rgba(0, 230, 118, 0.08);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xl);
+}
+
 @media (max-width: 768px) {
   .checkout-layout {
     grid-template-columns: 1fr;

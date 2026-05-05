@@ -80,6 +80,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-inner container">
         <Link to="/" className="navbar-logo">
+          <img src="/logo.png" alt="Urban Thread Logo" className="navbar-logo-img" />
           <span className="logo-urban">URBAN</span>
           <span className="logo-thread">THREAD</span>
         </Link>

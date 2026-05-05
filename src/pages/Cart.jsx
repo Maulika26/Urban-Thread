@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import CouponInput from '../components/CouponInput';
 import './Cart.css';
 
 export default function Cart() {
-  const { cartItems, updateQuantity, removeFromCart, cartTotal, cartCount } = useCart();
+  const { cartItems, updateQuantity, removeFromCart, cartTotal, cartCount, appliedCoupon, discount, finalTotal } = useCart();
 
   if (cartItems.length === 0) {
     return (
@@ -73,10 +74,29 @@ export default function Cart() {
               <span>Shipping</span>
               <span>Free</span>
             </div>
+
+            {/* Coupon Section */}
+            <div className="summary-divider"></div>
+            <CouponInput />
+
+            {appliedCoupon && (
+              <>
+                <div className="summary-divider"></div>
+                <div className="summary-row summary-discount">
+                  <span>Discount ({appliedCoupon.code})</span>
+                  <span>−₹{discount.toLocaleString('en-IN')}</span>
+                </div>
+                <div className="summary-savings">
+                  <Sparkles size={14} />
+                  You're saving ₹{discount.toLocaleString('en-IN')} on this order!
+                </div>
+              </>
+            )}
+
             <div className="summary-divider"></div>
             <div className="summary-row summary-total">
               <span>Total</span>
-              <span>₹{cartTotal.toLocaleString('en-IN')}</span>
+              <span>₹{finalTotal.toLocaleString('en-IN')}</span>
             </div>
             <Link to="/checkout" className="btn btn-primary btn-lg w-full">
               Proceed to Checkout <ArrowRight size={18} />

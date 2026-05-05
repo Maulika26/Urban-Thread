@@ -24,6 +24,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProducts from './pages/admin/AdminProducts';
 import ProductForm from './pages/admin/ProductForm';
 import AdminOrders from './pages/admin/AdminOrders';
+import AdminCoupons from './pages/admin/AdminCoupons';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                     <Route path="/admin/products/new" element={<AdminRoute><ProductForm /></AdminRoute>} />
                     <Route path="/admin/products/edit/:id" element={<AdminRoute><ProductForm /></AdminRoute>} />
                     <Route path="/admin/orders" element={<AdminRoute><AdminOrders /></AdminRoute>} />
+                    <Route path="/admin/coupons" element={<AdminRoute><AdminCoupons /></AdminRoute>} />
                   </Routes>
                 </main>
                 <FloatingWhatsApp />

@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CreditCard, Lock, CheckCircle } from 'lucide-react';
+import { CreditCard, Lock, CheckCircle, Sparkles } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
+import { recordCouponUsage } from '../lib/couponUtils';
+import CouponInput from '../components/CouponInput';
 import './Checkout.css';
 
 export default function Checkout() {
-  const { cartItems, cartTotal, clearCart } = useCart();
+  const { cartItems, cartTotal, clearCart, appliedCoupon, discount, finalTotal } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -23,7 +25,6 @@ export default function Checkout() {
   });
 
   const shipping = 0;
-  const total = cartTotal;
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -53,16 +54,18 @@ export default function Checkout() {
       return;
     }
 
+    const paymentAmount = finalTotal;
+
     const options = {
       key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_placeholder',
-      amount: total * 100,
+      amount: paymentAmount * 100,
       currency: 'INR',
       name: 'UrbanThread',
       description: `Order of ${cartItems.length} item(s)`,
       handler: async function (response) {
         // Save order to Supabase
         try {
-          await supabase.from('orders').insert({
+          const { data: orderData } = await supabase.from('orders').insert({
             user_id: user?.id || null,
             items: cartItems.map(item => ({
               id: item.id,
@@ -72,11 +75,18 @@ export default function Checkout() {
               size: item.size,
               image_url: item.image_url
             })),
-            total: total,
+            total: paymentAmount,
             payment_id: response.razorpay_payment_id,
             status: 'confirmed',
             shipping_address: form,
-          });
+            coupon_code: appliedCoupon?.code || null,
+            discount: discount || 0,
+          }).select().single();
+
+          // Record coupon usage
+          if (appliedCoupon && user?.id && orderData) {
+            await recordCouponUsage(appliedCoupon.id, user.id, orderData.id);
+          }
         } catch (err) {
           console.error('Error saving order:', err);
         }
@@ -110,6 +120,11 @@ export default function Checkout() {
             <CheckCircle size={64} color="var(--success)" />
             <h2>Order Placed Successfully!</h2>
             <p>Thank you for shopping with UrbanThread. Your order is being processed.</p>
+            {discount > 0 && (
+              <p className="order-success-savings">
+                <Sparkles size={16} /> You saved ₹{discount.toLocaleString('en-IN')} with coupon!
+              </p>
+            )}
             <button className="btn btn-primary btn-lg" onClick={() => navigate('/products')}>
               Continue Shopping
             </button>
@@ -189,14 +204,33 @@ export default function Checkout() {
               <span>Shipping</span>
               <span>Free</span>
             </div>
+
+            {/* Coupon Section */}
+            <div className="summary-divider"></div>
+            <CouponInput />
+
+            {appliedCoupon && (
+              <>
+                <div className="summary-divider"></div>
+                <div className="summary-row summary-discount">
+                  <span>Discount ({appliedCoupon.code})</span>
+                  <span>−₹{discount.toLocaleString('en-IN')}</span>
+                </div>
+                <div className="summary-savings">
+                  <Sparkles size={14} />
+                  You're saving ₹{discount.toLocaleString('en-IN')}!
+                </div>
+              </>
+            )}
+
             <div className="summary-divider"></div>
             <div className="summary-row summary-total">
               <span>Total</span>
-              <span>₹{total.toLocaleString('en-IN')}</span>
+              <span>₹{finalTotal.toLocaleString('en-IN')}</span>
             </div>
             <button type="submit" className="btn btn-primary btn-lg w-full" disabled={loading}>
               <Lock size={16} />
-              {loading ? 'Processing...' : `Pay ₹${total.toLocaleString('en-IN')}`}
+              {loading ? 'Processing...' : `Pay ₹${finalTotal.toLocaleString('en-IN')}`}
             </button>
             <p className="secure-note">
               <Lock size={14} /> Secured by Razorpay

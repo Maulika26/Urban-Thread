@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Package, AlertTriangle, DollarSign, ShoppingCart, Plus, TrendingUp, Truck } from 'lucide-react';
+import { Package, AlertTriangle, DollarSign, ShoppingCart, Plus, TrendingUp, Truck, Tag } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import './Admin.css';
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState({ total: 0, lowStock: 0, totalValue: 0, categories: 0, orders: 0 });
+  const [stats, setStats] = useState({ total: 0, lowStock: 0, totalValue: 0, categories: 0, orders: 0, activeCoupons: 0 });
   const [recentProducts, setRecentProducts] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,7 @@ export default function AdminDashboard() {
   const fetchStats = async () => {
     const { data: products } = await supabase.from('products').select('*');
     const { count: orderCount } = await supabase.from('orders').select('*', { count: 'exact', head: true });
+    const { count: couponCount } = await supabase.from('coupons').select('*', { count: 'exact', head: true }).eq('status', 'active');
     if (products) {
       const categories = new Set(products.map(p => p.category));
       setStats({
@@ -23,6 +24,7 @@ export default function AdminDashboard() {
         totalValue: products.reduce((sum, p) => sum + (p.price * p.stock), 0),
         categories: categories.size,
         orders: orderCount || 0,
+        activeCoupons: couponCount || 0,
       });
       setRecentProducts(products.slice(0, 5));
     }
@@ -31,6 +33,7 @@ export default function AdminDashboard() {
   const statCards = [
     { icon: Package, label: 'Total Products', value: stats.total, color: 'var(--accent)' },
     { icon: Truck, label: 'Total Orders', value: stats.orders, color: 'var(--mood-confident)' },
+    { icon: Tag, label: 'Active Coupons', value: stats.activeCoupons, color: 'var(--mood-relaxed)' },
     { icon: AlertTriangle, label: 'Low Stock', value: stats.lowStock, color: 'var(--warning)' },
     { icon: DollarSign, label: 'Inventory Value', value: `₹${stats.totalValue.toLocaleString('en-IN')}`, color: 'var(--success)' },
   ];
@@ -44,6 +47,9 @@ export default function AdminDashboard() {
             <p className="admin-subtitle">Manage your store products, inventory & orders</p>
           </div>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link to="/admin/coupons" className="btn btn-secondary">
+              <Tag size={18} /> Manage Coupons
+            </Link>
             <Link to="/admin/orders" className="btn btn-secondary">
               <Truck size={18} /> Manage Orders
             </Link>

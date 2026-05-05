@@ -36,6 +36,13 @@
   z-index: 100;
 }
 
+.navbar-logo-img {
+  height: 28px;
+  width: auto;
+  margin-right: 4px;
+  border-radius: 4px;
+}
+
 .logo-urban {
   color: var(--text-primary);
 }
