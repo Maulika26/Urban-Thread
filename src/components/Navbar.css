@@ -326,12 +326,59 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar-inner {
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+  }
+
+  .navbar-logo {
+    order: 1;
+  }
+
+  .navbar-actions {
+    order: 2;
+    gap: 2px;
+  }
+
   .navbar-links {
+    display: flex;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    gap: var(--space-md);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .navbar-links::-webkit-scrollbar {
     display: none;
   }
 
+  .nav-link {
+    white-space: nowrap;
+    padding: 0.25rem 0.5rem;
+  }
+
   .mobile-menu-btn {
-    display: flex;
+    display: none;
+  }
+
+  .nav-action-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Hide less essential icons on tablets/mobile */
+  .navbar-actions > .search-wrapper {
+    display: none;
   }
 
   .nav-login-btn {
@@ -358,5 +405,27 @@
 @media (max-width: 480px) {
   .navbar-logo {
     font-size: 1.1rem;
+  }
+
+  .navbar-logo-img {
+    height: 22px;
+  }
+
+  .navbar-actions {
+    gap: 0;
+  }
+
+  .nav-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* On very small screens, hide notification bell and user dropdown too */
+  .navbar-actions > .notification-bell-wrapper {
+    display: none;
+  }
+
+  .user-avatar-btn .chevron {
+    display: none;
   }
 }

@@ -162,12 +162,13 @@
 }
 
 .feature-item h4 {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 600;
+  margin-bottom: 4px;
 }
 
 .feature-item p {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
 }
 
@@ -378,6 +379,13 @@
     gap: var(--space-lg);
   }
 
+  .feature-item {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+
   .categories-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -389,7 +397,8 @@
 
   .section-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: var(--space-sm);
   }
 
